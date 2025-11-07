@@ -1,27 +1,50 @@
 #include <stdio.h>
+
+int armstrong(int n)    {
+    int temp = n;
+    int len, result = 0;
+    for(len = 0; temp; len++, temp/=10);
+    temp = n;
+    
+    while(temp) {
+        int lastDigit = temp % 10, pow = 1;
+        temp /= 10;
+
+        for(int x = 1; x <= len; x++)
+            pow = pow * lastDigit;
+        
+        result += pow;
+    }
+
+    return (n == result);
+}
+
+int sumArray(int arr[], int size)   {
+    int sum = 0;
+    for(int x = 0; x < size; x++)
+        sum += arr[x];
+    return sum;
+}
+
+int factorial(int n)    {
+    if(n == 0)
+        return 1;
+    return n * factorial(n - 1);
+}
+
+
+
 int main()
 {
     int size;
     printf("Enter the array size :- ");
     scanf("%d",&size);
-    int arr1[size];
-    int arr2[size];
-    int resultArr[size];
-
-    printf("\nEnter %d numbers :- ",size);
-    for(int x = 0; x < size; x++)
-        scanf("%d",&arr1[x]);
-
-    printf("\nEnter %d numbers :- ",size);
-    for(int x = 0; x < size; x++)
-        scanf("%d",&arr2[x]);
-
+    int arr[size];
 
     for(int x = 0; x < size; x++)
-        resultArr[x] = arr1[x] + arr2[x];
+        scanf("%d",&arr[x]);
 
-    for(int x = 0; x < size; x++)
-        printf("%d ",resultArr[x]);
+    printf("Sum of Array :- %d",sumArray(arr, size));
        
     printf("\n");
     return 0; 
